@@ -12,8 +12,15 @@ export default defineNuxtConfig( {
     "@vee-validate/nuxt",
     "@primevue/nuxt-module",
     "nuxt-security",
-    "@peterbud/nuxt-query"
+    "@peterbud/nuxt-query",
+    "@vueuse/nuxt"
   ],
+  runtimeConfig    : {
+    public: {
+      spotifyClientId: process.env.SPOTIFY_CLIENT,
+      spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI
+    }
+  },
   css              : ["~/assets/css/main.css", "primeicons/primeicons.css"],
   vite             : {
     plugins: [
