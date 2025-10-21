@@ -25,7 +25,7 @@ export default defineNuxtConfig( {
   vite             : {
     plugins: [
       tailwindcss()
-    ]
+    ],
   },
   nuxtQuery        : {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]
