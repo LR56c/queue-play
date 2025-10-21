@@ -7,7 +7,7 @@ export default defineNuxtConfig( {
   modules          : [
     "@nuxt/ui",
     "@nuxtjs/supabase",
-    "@prisma/nuxt",
+    // "@prisma/nuxt",
     "@pinia/nuxt",
     "@vee-validate/nuxt",
     "@primevue/nuxt-module",
@@ -29,9 +29,6 @@ export default defineNuxtConfig( {
   },
   nuxtQuery        : {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]
-  },
-  prisma: {
-    runMigrations: false
   },
   supabase:
     {
