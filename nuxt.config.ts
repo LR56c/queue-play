@@ -30,7 +30,9 @@ export default defineNuxtConfig( {
   nuxtQuery        : {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]
   },
-
+  prisma: {
+    runMigrations: false
+  },
   supabase:
     {
       redirect: false
