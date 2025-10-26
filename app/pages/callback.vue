@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-
 onMounted(async () => {
   const route = useRoute();
   const router = useRouter();
@@ -46,7 +45,7 @@ onMounted(async () => {
 
     const response = await body.json();
     const accessToken = useCookie('spotify_access_token', {
-      maxAge: response.expires_in // La cookie expirará al mismo tiempo que el token
+      maxAge: response.expires_in
     });
     accessToken.value = response.access_token;
 
@@ -54,7 +53,7 @@ onMounted(async () => {
     console.error("Ocurrió un error al obtener el token de Spotify:", error);
   } finally {
     window.sessionStorage.removeItem('spotify_code_verifier');
-    router.push('/');
+    await router.push('/');
   }
 });
 </script>
