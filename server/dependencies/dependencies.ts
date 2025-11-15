@@ -36,6 +36,19 @@ import {
 import {
   SearchSongs
 }                       from "~~/core/modules/on_going_song/application/search_songs"
+import {
+  PrismaPlaylistData
+}                       from "~~/core/modules/playlist/infrastructure/prisma_playlist_data"
+import { AddPlaylist }  from "~~/core/modules/playlist/application/add_playlist"
+import {
+  RemovePlaylist
+}                       from "~~/core/modules/playlist/application/remove_playlist"
+import {
+  UpdatePlaylist
+}                       from "~~/core/modules/playlist/application/update_playlist"
+import {
+  SearchPlaylist
+}                       from "~~/core/modules/playlist/application/search_playlist"
 
 const branchDao    = new PrismaBranchData( prisma )
 const addBranch    = new AddBranch( branchDao )
@@ -54,3 +67,9 @@ const addOnGoingSong    = new AddSong( onGoingSongDao )
 const removeOnGoingSong = new RemoveSongsBullk( onGoingSongDao )
 const updateOnGoingSong = new UpdateSongsBulk( onGoingSongDao )
 const searchOnGoingSong = new SearchSongs( onGoingSongDao )
+
+const playlistDao    = new PrismaPlaylistData( prisma )
+const addPlaylist    = new AddPlaylist( playlistDao, searchOnGoingSong )
+const removePlaylist = new RemovePlaylist( playlistDao )
+const updatePlaylist = new UpdatePlaylist( playlistDao, searchOnGoingSong )
+const searchPlaylist = new SearchPlaylist( playlistDao )
