@@ -49,6 +49,21 @@ import {
 import {
   SearchPlaylist
 }                       from "~~/core/modules/playlist/application/search_playlist"
+import {
+  PrismaSchedulePlaylistData
+}                       from "~~/core/modules/schedule_playlist/infrastructure/prisma_schedule_playlist_data"
+import {
+  AddSchedulePlaylist
+}                       from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
+import {
+  RemoveSchedulePlaylist
+}                       from "~~/core/modules/schedule_playlist/application/remove_schedule_playlist"
+import {
+  UpdateSchedulePlaylist
+}                       from "~~/core/modules/schedule_playlist/application/update_schedule_playlist"
+import {
+  SearchSchedulePlaylist
+}                       from "~~/core/modules/schedule_playlist/application/search_schedule_playlist"
 
 const branchDao    = new PrismaBranchData( prisma )
 const addBranch    = new AddBranch( branchDao )
@@ -73,3 +88,9 @@ const addPlaylist    = new AddPlaylist( playlistDao, searchOnGoingSong )
 const removePlaylist = new RemovePlaylist( playlistDao )
 const updatePlaylist = new UpdatePlaylist( playlistDao, searchOnGoingSong )
 const searchPlaylist = new SearchPlaylist( playlistDao )
+
+const scheduleDao    = new PrismaSchedulePlaylistData( prisma )
+const addSchedule    = new AddSchedulePlaylist( scheduleDao, searchPlaylist )
+const removeSchedule = new RemoveSchedulePlaylist( scheduleDao )
+const updateSchedule = new UpdateSchedulePlaylist( scheduleDao, searchPlaylist )
+const searchSchedule = new SearchSchedulePlaylist( scheduleDao )
