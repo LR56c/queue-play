@@ -71,6 +71,7 @@ import { AddUser }      from "~~/core/modules/user/application/add_user"
 import { RemoveUser }   from "~~/core/modules/user/application/remove_user"
 import { UpdateUser }   from "~~/core/modules/user/application/update_user"
 import { SearchUser }   from "~~/core/modules/user/application/search_user"
+import { UserService }  from "~~/server/services/user_service"
 
 const branchDao    = new PrismaBranchData( prisma )
 const addBranch    = new AddBranch( branchDao )
@@ -107,3 +108,9 @@ const addUser    = new AddUser( userDao )
 const removeUser = new RemoveUser( userDao )
 const updateUser = new UpdateUser( userDao )
 const searchUser = new SearchUser( userDao )
+export const userService = new UserService(
+  addUser,
+  searchUser,
+  removeUser,
+  updateUser,
+)
