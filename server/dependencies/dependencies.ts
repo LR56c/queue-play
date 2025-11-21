@@ -84,6 +84,7 @@ import { SearchUser }        from "~~/core/modules/user/application/search_user"
 import { UserService }       from "~~/server/services/user_service"
 import { SongService }       from "~~/server/services/song_service"
 import { BannedSongService } from "~~/server/services/banned_song_service"
+import { PlaylistService }   from "~~/server/services/playlist_service"
 
 const branchDao    = new PrismaBranchData( prisma )
 const addBranch    = new AddBranch( branchDao )
@@ -120,6 +121,12 @@ const removePlaylist           = new RemovePlaylist( playlistDao )
 const updatePlaylist           = new UpdatePlaylist( playlistDao,
   searchOnGoingSong )
 const searchPlaylist           = new SearchPlaylist( playlistDao )
+export const playlistService = new PlaylistService(
+  addPlaylist,
+  searchPlaylist,
+  removePlaylist,
+  updatePlaylist
+)
 
 const scheduleDao    = new PrismaSchedulePlaylistData( prisma )
 const addSchedule    = new AddSchedulePlaylist( scheduleDao, searchPlaylist )
