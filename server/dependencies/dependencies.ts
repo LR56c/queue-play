@@ -133,7 +133,12 @@ const addSchedule    = new AddSchedulePlaylist( scheduleDao, searchPlaylist )
 const removeSchedule = new RemoveSchedulePlaylist( scheduleDao )
 const updateSchedule = new UpdateSchedulePlaylist( scheduleDao, searchPlaylist )
 const searchSchedule = new SearchSchedulePlaylist( scheduleDao )
-
+export const schedulePlaylistService = new PlaylistService(
+  addSchedule,
+  searchSchedule,
+  removeSchedule,
+  updateSchedule
+)
 const userDao            = new PrismaUserData( prisma )
 const addUser            = new AddUser( userDao )
 const removeUser         = new RemoveUser( userDao )
