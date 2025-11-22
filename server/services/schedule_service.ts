@@ -27,9 +27,9 @@ import {
 export class ScheduleService {
   constructor(
     private readonly addSchedule: AddSchedulePlaylist,
-    private readonly searchSchedule: RemoveSchedulePlaylist,
-    private readonly removeSchedule: UpdateSchedulePlaylist,
-    private readonly updateSchedule: SearchSchedulePlaylist
+    private readonly searchSchedule: SearchSchedulePlaylist,
+    private readonly removeSchedule: RemoveSchedulePlaylist,
+    private readonly updateSchedule: UpdateSchedulePlaylist
   )
   {
   }

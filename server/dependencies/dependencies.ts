@@ -63,9 +63,6 @@ import {
   PrismaSchedulePlaylistData
 }                            from "~~/core/modules/schedule_playlist/infrastructure/prisma_schedule_playlist_data"
 import {
-  AddSchedulePlaylist
-}                            from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
-import {
   RemoveSchedulePlaylist
 }                            from "~~/core/modules/schedule_playlist/application/remove_schedule_playlist"
 import {
@@ -85,6 +82,10 @@ import { UserService }       from "~~/server/services/user_service"
 import { SongService }       from "~~/server/services/song_service"
 import { BannedSongService } from "~~/server/services/banned_song_service"
 import { PlaylistService }   from "~~/server/services/playlist_service"
+import {
+  AddSchedulePlaylist
+} from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
+import { ScheduleService }   from "~~/server/services/schedule_service"
 
 const branchDao    = new PrismaBranchData( prisma )
 const addBranch    = new AddBranch( branchDao )
@@ -133,7 +134,7 @@ const addSchedule    = new AddSchedulePlaylist( scheduleDao, searchPlaylist )
 const removeSchedule = new RemoveSchedulePlaylist( scheduleDao )
 const updateSchedule = new UpdateSchedulePlaylist( scheduleDao, searchPlaylist )
 const searchSchedule = new SearchSchedulePlaylist( scheduleDao )
-export const schedulePlaylistService = new PlaylistService(
+export const schedulePlaylistService = new ScheduleService(
   addSchedule,
   searchSchedule,
   removeSchedule,
