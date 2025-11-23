@@ -86,13 +86,19 @@ import {
   AddSchedulePlaylist
 } from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
 import { ScheduleService }   from "~~/server/services/schedule_service"
+import { BranchService }     from "~~/server/services/branch_service"
 
 const branchDao    = new PrismaBranchData( prisma )
 const addBranch    = new AddBranch( branchDao )
 const removeBranch = new RemoveBranch( branchDao )
 const updateBranch = new UpdateBranch( branchDao )
 const searchBranch = new SearchBranch( branchDao )
-
+export const branchService = new BranchService(
+  addBranch,
+  searchBranch,
+  removeBranch,
+  updateBranch
+)
 const bannedSongDao            = new PrismaBannedSongData( prisma )
 const addBannedSong            = new AddBannedSong( bannedSongDao )
 const removeBannedSong         = new RemoveBannedSong( bannedSongDao )
