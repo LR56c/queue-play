@@ -56,7 +56,7 @@ export class BannedSongService {
       total: result.right.total
     } )
   }
-
+1
   async remove( id: string ): Promise<Either<BaseException[], boolean>> {
     return await this.removeBannedSong.execute( id )
   }
