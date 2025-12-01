@@ -84,16 +84,29 @@ import { BannedSongService } from "~~/server/services/banned_song_service"
 import { PlaylistService }   from "~~/server/services/playlist_service"
 import {
   AddSchedulePlaylist
-} from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
+}                            from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
 import { ScheduleService }   from "~~/server/services/schedule_service"
 import { BranchService }     from "~~/server/services/branch_service"
+import {
+  SupabaseAdminUserData
+}                            from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
+import { LoginAuth }         from "~~/core/modules/auth/application/login_auth"
+import {
+  RegisterAuth
+}                            from "~~/core/modules/auth/application/register_auth"
+import { RemoveAuth }        from "~~/core/modules/auth/application/remove_auth"
+import { UpdateAuth }        from "~~/core/modules/auth/application/update_auth"
+import { AuthService }       from "~~/server/services/auth_service"
+import {
+  SupabaseJwtData
+}                            from "~~/core/modules/auth/infrastructure/supabase_jwt_data"
 
-const branchDao    = new PrismaBranchData( prisma )
-const addBranch    = new AddBranch( branchDao )
-const removeBranch = new RemoveBranch( branchDao )
-const updateBranch = new UpdateBranch( branchDao )
-const searchBranch = new SearchBranch( branchDao )
-export const branchService = new BranchService(
+const branchDao                = new PrismaBranchData( prisma )
+const addBranch                = new AddBranch( branchDao )
+const removeBranch             = new RemoveBranch( branchDao )
+const updateBranch             = new UpdateBranch( branchDao )
+const searchBranch             = new SearchBranch( branchDao )
+export const branchService     = new BranchService(
   addBranch,
   searchBranch,
   removeBranch,
@@ -128,32 +141,57 @@ const removePlaylist           = new RemovePlaylist( playlistDao )
 const updatePlaylist           = new UpdatePlaylist( playlistDao,
   searchOnGoingSong )
 const searchPlaylist           = new SearchPlaylist( playlistDao )
-export const playlistService = new PlaylistService(
+export const playlistService   = new PlaylistService(
   addPlaylist,
   searchPlaylist,
   removePlaylist,
   updatePlaylist
 )
 
-const scheduleDao    = new PrismaSchedulePlaylistData( prisma )
-const addSchedule    = new AddSchedulePlaylist( scheduleDao, searchPlaylist )
-const removeSchedule = new RemoveSchedulePlaylist( scheduleDao )
-const updateSchedule = new UpdateSchedulePlaylist( scheduleDao, searchPlaylist )
-const searchSchedule = new SearchSchedulePlaylist( scheduleDao )
+const scheduleDao                    = new PrismaSchedulePlaylistData( prisma )
+const addSchedule                    = new AddSchedulePlaylist( scheduleDao,
+  searchPlaylist )
+const removeSchedule                 = new RemoveSchedulePlaylist( scheduleDao )
+const updateSchedule                 = new UpdateSchedulePlaylist( scheduleDao,
+  searchPlaylist )
+const searchSchedule                 = new SearchSchedulePlaylist( scheduleDao )
 export const schedulePlaylistService = new ScheduleService(
   addSchedule,
   searchSchedule,
   removeSchedule,
   updateSchedule
 )
-const userDao            = new PrismaUserData( prisma )
-const addUser            = new AddUser( userDao )
-const removeUser         = new RemoveUser( userDao )
-const updateUser         = new UpdateUser( userDao )
-const searchUser         = new SearchUser( userDao )
-export const userService = new UserService(
+const userDao                        = new PrismaUserData( prisma )
+const addUser                        = new AddUser( userDao )
+const removeUser                     = new RemoveUser( userDao )
+const updateUser                     = new UpdateUser( userDao )
+const searchUser                     = new SearchUser( userDao )
+export const userService             = new UserService(
   addUser,
   searchUser,
   removeUser,
   updateUser
+)
+
+const supabaseAdmin = createClient( supabaseUrl,
+  supabaseServiceRoleKey, {
+    auth: {
+      persistSession: false
+    }
+  } )
+
+const jwtData                = new SupabaseJwtData()
+const supabaseUrl            = process.env.SUPABASE_URL as string
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY as string
+const authData               = new SupabaseAdminUserData( supabaseAdmin )
+const loginAuth              = new LoginAuth( authData )
+const registerAuth           = new RegisterAuth( authData )
+const removeAuth             = new RemoveAuth( authData )
+const updateAuth             = new UpdateAuth( authData )
+export const authService     = new AuthService(
+  jwtData,
+  registerAuth,
+  loginAuth,
+  removeAuth,
+  updateAuth
 )
