@@ -16,6 +16,11 @@ export default defineNuxtConfig( {
     "@vueuse/nuxt"
   ],
   runtimeConfig    : {
+    jwt: {
+      key  : process.env.JWT_KEY,
+      token:
+      process.env.JWT_TOKEN
+    },
     public: {
       spotifyClientId: process.env.SPOTIFY_CLIENT,
       spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI

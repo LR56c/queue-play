@@ -85,8 +85,8 @@ export class AuthService {
     return right( true )
   }
 
-  async update( dto: UserUpdateDTO, role: string ): Promise<Either<BaseException[], UserResponse>> {
-    const result = await this.updateAuth.execute( dto,role)
+  async update( dto: UserUpdateDTO ): Promise<Either<BaseException[], UserResponse>> {
+    const result = await this.updateAuth.execute( dto)
     if ( isLeft( result ) ) {
       return left( result.left )
     }

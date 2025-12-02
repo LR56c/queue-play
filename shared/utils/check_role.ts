@@ -1,6 +1,11 @@
-import { matchRole, RoleLevel } from "../../modules/shared/utils/role_level"
-import { authService }          from "../dependencies/dependencies"
-import { isLeft }               from "fp-ts/Either"
+import { isLeft }                     from "fp-ts/Either"
+import {
+  matchRole,
+  type RoleLevel
+} from "~~/core/modules/shared/utils/role_level"
+import {
+  JWTRepository
+}                                     from "~~/core/modules/auth/domain/jwt_repository"
 
 type RoleResponse = {
                       message: string
@@ -12,10 +17,9 @@ type RoleResponse = {
                     }
 
 // @ts-ignore
-export const checkRole = async ( request, response,
-  minRole: RoleLevel ): Promise<RoleResponse> => {
+export const checkRole = async ( repo : JWTRepository, headers : any, minRole: RoleLevel ): Promise<RoleResponse> => {
 
-  const token = request.headers.authorization
+  const token = headers.authorization
   if ( !token && !token.startsWith( "Bearer " ) ) {
     return {
       message: "Unauthorized",
@@ -26,7 +30,7 @@ export const checkRole = async ( request, response,
 
   const split = token.split( " " )[1].trim()
 
-  const decodedTokenResult = await authService.verifyToken( split )
+  const decodedTokenResult = await repo.verify( split )
   if ( isLeft( decodedTokenResult ) ) {
     return {
       message: "Unauthorized",

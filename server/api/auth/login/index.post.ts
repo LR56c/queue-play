@@ -2,30 +2,37 @@ import { isLeft }                    from "fp-ts/Either"
 import {
   parseData
 }                                    from "~~/core/modules/shared/application/parse_handlers"
-import { z }                         from "zod"
 import {
-  RemoveAuth
-}                                    from "~~/core/modules/auth/application/remove_auth"
+  loginRequestSchema
+}                                    from "~~/core/modules/auth/domain/login_request"
+import { signJwt }                   from "~~/server/utils/sign_jwt"
 import { serverSupabaseServiceRole } from "#supabase/server"
 import {
   SupabaseAdminUserData
 }                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
+import {
+  LoginAuth
+}                                    from "~~/core/modules/auth/application/login_auth"
+import { SupabaseClient }            from "@supabase/supabase-js"
 
 export default defineEventHandler( async ( event ) => {
-  const queryParams = getQuery( event )
-  const idParam     = await parseData( z.object( {
-    id: z.string()
-  } ), queryParams )
-  if ( isLeft( idParam ) ) {
+  const body = await readBody( event )
+
+  const dto = await parseData( loginRequestSchema, body )
+
+  if ( isLeft( dto ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
     } )
   }
+
   const supabaseClient: SupabaseClient = serverSupabaseServiceRole( event )
-  const authData                 = new SupabaseAdminUserData( supabaseClient )
-  const removeAuth             = new RemoveAuth( authData )
-  const result = await removeAuth.execute( idParam.right.id )
+  const authData                       = new SupabaseAdminUserData(
+    supabaseClient )
+  const loginAuth                      = new LoginAuth( authData )
+
+  const result = await loginAuth.execute( dto.right )
 
   if ( isLeft( result ) ) {
     throw createError( {
@@ -33,7 +40,7 @@ export default defineEventHandler( async ( event ) => {
       statusMessage: "Bad Request"
     } )
   }
-
+  setHeader( event, "ut", await signJwt( result.right ) )
   return {
     statusMessage: "OK",
     statusCode   : 200

@@ -27,22 +27,11 @@ import type {
 
 export class UserService {
   constructor(
-    private readonly addUser: AddUser,
     private readonly searchUser: SearchUser,
-    private readonly removeUser: RemoveUser,
-    private readonly updateUser: UpdateUser
   )
   {
   }
 
-  async add( request: UserResponse,
-    role: string ): Promise<Either<BaseException[], UserResponse>> {
-    const result = await this.addUser.execute( request, role )
-    if ( isLeft( result ) ) {
-      return left( result.left )
-    }
-    return right( UserMapper.toDTO( result.right ) )
-  }
 
   async search( query: Record<string, any>, limit?: number,
     skip ?: string, sortBy ?: string,
@@ -56,17 +45,5 @@ export class UserService {
       items: result.right.items.map( UserMapper.toDTO ),
       total: result.right.total
     } )
-  }
-
-  async remove( id: string ): Promise<Either<BaseException[], boolean>> {
-    return await this.removeUser.execute( id )
-  }
-
-  async update( dto: UserUpdateDTO ): Promise<Either<BaseException[], UserResponse>> {
-    const result = await this.updateUser.execute( dto )
-    if ( isLeft( result ) ) {
-      return left( result.left )
-    }
-    return right( UserMapper.toDTO( result.right ) )
   }
 }
