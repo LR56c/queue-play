@@ -7,3 +7,109 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
+enum SourceType {
+  YOUTUBE
+}
+
+model User {
+  id        String   @id
+  email     String   @unique
+  username  String   @unique
+  role      String
+  createdAt DateTime
+
+  branches    UserBranch[]
+  Playlist    Playlist[]
+  OnGoingSong OnGoingSong[]
+}
+
+model Branch {
+  id        String   @id
+  name      String
+  thumbnail String
+  createdAt DateTime
+
+  users       UserBranch[]
+  OnGoingSong OnGoingSong[]
+  Playlist    Playlist[]
+
+  BannedSong BannedSong[]
+}
+
+model UserBranch {
+  id        String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  branchId  String
+  branch    Branch   @relation(fields: [branchId], references: [id])
+  createdAt DateTime
+
+  @@unique([userId, branchId])
+}
+
+model Playlist {
+  id        String   @id
+  branchId  String
+  branch    Branch   @relation(fields: [branchId], references: [id])
+  name      String
+  isActive  Boolean
+  createdAt DateTime
+
+  createdBy   String
+  createdUser User   @relation(fields: [createdBy], references: [id])
+
+  PlaylistSong PlaylistSong[]
+  ScheduleSong ScheduleSong[]
+}
+
+model OnGoingSong {
+  id          String     @id
+  branchId    String
+  sourceType  SourceType
+  sourceUrl   String
+  order       Int
+  duration    Int
+  songName    String
+  artistName  String
+  reportCount Int
+  createdAt   DateTime
+  thumbnail   String?
+  requestedBy String?
+  playedAt    DateTime?
+
+  branch        Branch         @relation(fields: [branchId], references: [id])
+  requestedUser User?          @relation(fields: [requestedBy], references: [id])
+  PlaylistSong  PlaylistSong[]
+}
+
+model BannedSong {
+  id        String   @id
+  branchId  String
+  sourceUrl String   @unique
+  createdAt DateTime
+
+  branch Branch @relation(fields: [branchId], references: [id])
+}
+
+model PlaylistSong {
+  id         String   @id
+  playlistId String
+  order      Int
+  songId     String
+  createdAt  DateTime
+
+  playlist Playlist    @relation(fields: [playlistId], references: [id])
+  song     OnGoingSong @relation(fields: [songId], references: [id])
+}
+
+model ScheduleSong {
+  id         String   @id
+  playlistId String
+  day        Int
+  startTime  DateTime
+  endTime    DateTime
+  createdAt  DateTime
+
+  playlist Playlist @relation(fields: [playlistId], references: [id])
+}

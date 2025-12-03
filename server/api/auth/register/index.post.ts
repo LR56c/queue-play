@@ -21,6 +21,7 @@ import { SupabaseClient }            from "@supabase/supabase-js"
 export default defineEventHandler( async ( event ) => {
   const body = await readBody( event )
 
+
   const dto = await parseData( userRequestSchema.extend( {
     password: passwordSchema
   } ), body )
@@ -28,7 +29,7 @@ export default defineEventHandler( async ( event ) => {
   if ( isLeft( dto ) ) {
     throw createError( {
       statusCode   : 400,
-      statusMessage: "Bad Request"
+      statusMessage: "Bad Request",
     } )
   }
 
@@ -39,6 +40,7 @@ export default defineEventHandler( async ( event ) => {
   const registerAuth                   = new RegisterAuth( authData )
 
   const result = await registerAuth.execute( request, password, "user" )
+  console.log('result',result)
 
   if ( isLeft( result ) ) {
     throw createError( {

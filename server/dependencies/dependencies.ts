@@ -174,3 +174,4 @@ const searchUser                     = new SearchUser( userDao )
 export const userService             = new UserService(
   searchUser
 )
+export const jwtData = new SupabaseJwtData()

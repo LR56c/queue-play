@@ -40,7 +40,8 @@ export default defineEventHandler( async ( event ) => {
       statusMessage: "Bad Request"
     } )
   }
-  setHeader( event, "ut", await signJwt( result.right ) )
+
+  setHeader( event, "ut", result.right.token )
   return {
     statusMessage: "OK",
     statusCode   : 200

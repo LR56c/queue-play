@@ -10,13 +10,16 @@ import { serverSupabaseServiceRole } from "#supabase/server"
 import {
   SupabaseAdminUserData
 }                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
+import type { SupabaseClient }       from "@supabase/supabase-js"
 
 export default defineEventHandler( async ( event ) => {
-  const queryParams = getQuery( event )
-  const idParam     = await parseData( z.object( {
+  const idParam = getRouterParam(event, 'id')
+  const param     = await parseData( z.object( {
     id: z.string()
-  } ), queryParams )
-  if ( isLeft( idParam ) ) {
+  } ), {
+    id: idParam
+  } )
+  if ( isLeft( param ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
@@ -25,8 +28,8 @@ export default defineEventHandler( async ( event ) => {
   const supabaseClient: SupabaseClient = serverSupabaseServiceRole( event )
   const authData                 = new SupabaseAdminUserData( supabaseClient )
   const removeAuth             = new RemoveAuth( authData )
-  const result = await removeAuth.execute( idParam.right.id )
-
+  const result = await removeAuth.execute( param.right.id )
+  console.log('result',result)
   if ( isLeft( result ) ) {
     throw createError( {
       statusCode   : 400,

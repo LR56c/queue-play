@@ -18,8 +18,6 @@ export default defineNuxtConfig( {
   runtimeConfig    : {
     jwt: {
       key  : process.env.JWT_KEY,
-      token:
-      process.env.JWT_TOKEN
     },
     public: {
       spotifyClientId: process.env.SPOTIFY_CLIENT,
