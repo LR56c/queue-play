@@ -13,7 +13,7 @@ enum SourceType {
 }
 
 model User {
-  id        String   @id
+  id        String   @id @db.Uuid
   email     String   @unique
   username  String   @unique
   role      String
@@ -25,7 +25,7 @@ model User {
 }
 
 model Branch {
-  id        String   @id
+  id        String   @id @db.Uuid
   name      String
   thumbnail String
   createdAt DateTime
@@ -38,10 +38,10 @@ model Branch {
 }
 
 model UserBranch {
-  id        String   @id
-  userId    String
+  id        String   @id @db.Uuid
+  userId    String   @db.Uuid
   user      User     @relation(fields: [userId], references: [id])
-  branchId  String
+  branchId  String   @db.Uuid
   branch    Branch   @relation(fields: [branchId], references: [id])
   createdAt DateTime
 
@@ -49,14 +49,14 @@ model UserBranch {
 }
 
 model Playlist {
-  id        String   @id
-  branchId  String
+  id        String   @id @db.Uuid
+  branchId  String   @db.Uuid
   branch    Branch   @relation(fields: [branchId], references: [id])
   name      String
   isActive  Boolean
   createdAt DateTime
 
-  createdBy   String
+  createdBy   String @db.Uuid
   createdUser User   @relation(fields: [createdBy], references: [id])
 
   PlaylistSong PlaylistSong[]
@@ -64,8 +64,8 @@ model Playlist {
 }
 
 model OnGoingSong {
-  id          String     @id
-  branchId    String
+  id          String     @id @db.Uuid
+  branchId    String     @db.Uuid
   sourceType  SourceType
   sourceUrl   String
   order       Int
@@ -75,7 +75,7 @@ model OnGoingSong {
   reportCount Int
   createdAt   DateTime
   thumbnail   String?
-  requestedBy String?
+  requestedBy String?    @db.Uuid
   playedAt    DateTime?
 
   branch        Branch         @relation(fields: [branchId], references: [id])
@@ -84,8 +84,8 @@ model OnGoingSong {
 }
 
 model BannedSong {
-  id        String   @id
-  branchId  String
+  id        String   @id @db.Uuid
+  branchId  String   @db.Uuid
   sourceUrl String   @unique
   createdAt DateTime
 
@@ -93,10 +93,10 @@ model BannedSong {
 }
 
 model PlaylistSong {
-  id         String   @id
-  playlistId String
+  id         String   @id @db.Uuid
+  playlistId String   @db.Uuid
   order      Int
-  songId     String
+  songId     String   @db.Uuid
   createdAt  DateTime
 
   playlist Playlist    @relation(fields: [playlistId], references: [id])
@@ -104,8 +104,8 @@ model PlaylistSong {
 }
 
 model ScheduleSong {
-  id         String   @id
-  playlistId String
+  id         String   @id @db.Uuid
+  playlistId String   @db.Uuid
   day        Int
   startTime  DateTime
   endTime    DateTime

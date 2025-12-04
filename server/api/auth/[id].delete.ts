@@ -29,7 +29,6 @@ export default defineEventHandler( async ( event ) => {
   const authData                 = new SupabaseAdminUserData( supabaseClient )
   const removeAuth             = new RemoveAuth( authData )
   const result = await removeAuth.execute( param.right.id )
-  console.log('result',result)
   if ( isLeft( result ) ) {
     throw createError( {
       statusCode   : 400,
