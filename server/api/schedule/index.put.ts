@@ -1,5 +1,4 @@
 import { isLeft }                  from "fp-ts/Either"
-import { z }                       from "zod"
 import {
   parseData
 }                                  from "~~/core/modules/shared/application/parse_handlers"
@@ -9,16 +8,6 @@ import {
 }                                  from "~~/core/modules/schedule_playlist/application/schedule_playlist_response"
 
 export default defineEventHandler( async ( event ) => {
-  const queryParams = getQuery( event )
-  const idParam     = await parseData( z.object( {
-    id: z.string()
-  } ), queryParams )
-  if ( isLeft( idParam ) ) {
-    throw createError( {
-      statusCode   : 400,
-      statusMessage: "Bad Request"
-    } )
-  }
   const body = await readBody( event )
   const dto  = await parseData( schedulePlaylistResponse, body )
   if ( isLeft( dto ) ) {
@@ -28,7 +17,7 @@ export default defineEventHandler( async ( event ) => {
     } )
   }
 
-  const result = await schedulePlaylistService.update( idParam.right.id, dto.right )
+  const result = await schedulePlaylistService.update( dto.right )
   if ( isLeft( result ) ) {
 
     throw createError( {

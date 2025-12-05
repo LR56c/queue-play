@@ -1,6 +1,8 @@
-import { isLeft }      from "fp-ts/Either"
-import { parseData }   from "~~/core/modules/shared/application/parse_handlers"
-import { querySchema } from "~~/core/modules/shared/application/query_dto"
+import { isLeft }        from "fp-ts/Either"
+import {
+  parseData
+}                        from "~~/core/modules/shared/application/parse_handlers"
+import { querySchema }   from "~~/core/modules/shared/application/query_dto"
 import { branchService } from "~~/server/dependencies/dependencies"
 
 export default defineEventHandler( async ( event ) => {

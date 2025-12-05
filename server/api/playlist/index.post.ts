@@ -19,14 +19,13 @@ export default defineEventHandler( async ( event ) => {
     } )
   }
 
-  const result = await playlistService.add( dto.right, 'user' )
+  const result = await playlistService.add( dto.right )
   if ( isLeft( result ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
     } )
   }
-  // setHeader( event, "ut", await signJwt( result.right ) )
   return {
     statusMessage: "OK",
     statusCode   : 200

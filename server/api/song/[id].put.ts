@@ -9,11 +9,13 @@ import {
 }                      from "~~/core/modules/on_going_song/application/on_going_song_response"
 
 export default defineEventHandler( async ( event ) => {
-  const queryParams = getQuery( event )
-  const idParam     = await parseData( z.object( {
+  const idParam = getRouterParam(event, 'id')
+  const param     = await parseData( z.object( {
     id: z.string()
-  } ), queryParams )
-  if ( isLeft( idParam ) ) {
+  } ), {
+    id: idParam
+  } )
+  if ( isLeft( param ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
@@ -30,7 +32,7 @@ export default defineEventHandler( async ( event ) => {
     } )
   }
 
-  const result = await songService.update( dto.right.songs, idParam.right.id )
+  const result = await songService.update( dto.right.songs, param.right.id )
   if ( isLeft( result ) ) {
 
     throw createError( {

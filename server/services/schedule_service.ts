@@ -56,8 +56,8 @@ export class ScheduleService {
     } )
   }
 
-  async remove(dto: SchedulePlaylistResponse): Promise<Either<BaseException[], boolean>> {
-    return await this.removeSchedule.execute( dto)
+  async remove(id:string): Promise<Either<BaseException[], boolean>> {
+    return await this.removeSchedule.execute( id)
   }
 
   async update( dto: SchedulePlaylistResponse ): Promise<Either<BaseException[], boolean>> {

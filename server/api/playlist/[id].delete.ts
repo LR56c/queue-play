@@ -6,17 +6,19 @@ import {
 import { playlistService } from "~~/server/dependencies/dependencies"
 
 export default defineEventHandler( async ( event ) => {
-  const queryParams = getQuery( event )
-  const idParam     = await parseData( z.object( {
+  const idParam = getRouterParam(event, 'id')
+  const param     = await parseData( z.object( {
     id: z.string()
-  } ), queryParams )
-  if ( isLeft( idParam ) ) {
+  } ), {
+    id: idParam
+  } )
+  if ( isLeft( param ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
     } )
   }
-  const result = await playlistService.remove( idParam.right.id )
+  const result = await playlistService.remove( param.right.id )
 
   if ( isLeft( result ) ) {
     throw createError( {

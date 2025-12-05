@@ -34,8 +34,7 @@ export class SongService {
   {
   }
 
-  async add( request: OnGoingSongResponse,
-    role: string ): Promise<Either<BaseException[], boolean>> {
+  async add( request: OnGoingSongResponse): Promise<Either<BaseException[], boolean>> {
     const result = await this.addSong.execute( request )
     if ( isLeft( result ) ) {
       return left( result.left )

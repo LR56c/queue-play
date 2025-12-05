@@ -1,17 +1,15 @@
-import { isLeft }      from "fp-ts/Either"
+import { isLeft }          from "fp-ts/Either"
 import {
   parseData
-}                      from "~~/core/modules/shared/application/parse_handlers"
-import { songService } from "~~/server/dependencies/dependencies"
+}                          from "~~/core/modules/shared/application/parse_handlers"
+import { playlistService } from "~~/server/dependencies/dependencies"
 import {
-  onGoingSongResponse
-}                      from "~~/core/modules/on_going_song/application/on_going_song_response"
+  playlistResponse
+}                          from "~~/core/modules/playlist/application/playlist_response"
 
 export default defineEventHandler( async ( event ) => {
   const body = await readBody( event )
-
-  const dto = await parseData( onGoingSongResponse, body )
-
+  const dto  = await parseData( playlistResponse, body )
   if ( isLeft( dto ) ) {
     throw createError( {
       statusCode   : 400,
@@ -19,8 +17,9 @@ export default defineEventHandler( async ( event ) => {
     } )
   }
 
-  const result = await songService.add( dto.right )
+  const result = await playlistService.update( dto.right )
   if ( isLeft( result ) ) {
+
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"

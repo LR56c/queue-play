@@ -4,11 +4,13 @@ import { parseData }   from "~~/core/modules/shared/application/parse_handlers"
 import { songService } from "~~/server/dependencies/dependencies"
 
 export default defineEventHandler( async ( event ) => {
-  const queryParams = getQuery( event )
-  const idParam     = await parseData( z.object( {
+  const idParam = getRouterParam(event, 'id')
+  const param     = await parseData( z.object( {
     id: z.string()
-  } ), queryParams )
-  if ( isLeft( idParam ) ) {
+  } ), {
+    id: idParam
+  } )
+  if ( isLeft( param ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
@@ -24,7 +26,7 @@ export default defineEventHandler( async ( event ) => {
       statusMessage: "Bad Request"
     } )
   }
-  const result = await songService.remove( dto.right.ids, idParam.right.id )
+  const result = await songService.remove( dto.right.ids, param.right.id )
 
   if ( isLeft( result ) ) {
     throw createError( {

@@ -9,9 +9,6 @@ import {
   SearchBannedSong
 }                                           from "~~/core/modules/banned_song/application/search_banned_song"
 import {
-  RemoveBannedSong
-}                                           from "~~/core/modules/banned_song/application/remove_banned_song"
-import {
   UpdateBannedSong
 } from "~~/core/modules/banned_song/application/update_banned_song"
 import {
@@ -23,6 +20,9 @@ import {
 import {
   BannedSongMapper
 }                                           from "~~/core/modules/banned_song/application/banned_song_mapper"
+import  {
+  RemoveBannedSong
+} from "~~/core/modules/banned_song/application/remove_banned_song"
 
 export class BannedSongService {
   constructor(
@@ -34,9 +34,8 @@ export class BannedSongService {
   {
   }
 
-  async add( request: BannedSongResponse,
-    role: string ): Promise<Either<BaseException[], BannedSongResponse>> {
-    const result = await this.addBannedSong.execute( request, role )
+  async add( request: BannedSongResponse): Promise<Either<BaseException[], boolean>> {
+    const result = await this.addBannedSong.execute( request)
     if ( isLeft( result ) ) {
       return left( result.left )
     }
@@ -56,12 +55,12 @@ export class BannedSongService {
       total: result.right.total
     } )
   }
-1
+
   async remove( id: string ): Promise<Either<BaseException[], boolean>> {
     return await this.removeBannedSong.execute( id )
   }
 
-  async update( dto: BannedSongResponse ): Promise<Either<BaseException[], BannedSongResponse>> {
+  async update( dto: BannedSongResponse ): Promise<Either<BaseException[], boolean>> {
     const result = await this.updateBannedSong.execute( dto )
     if ( isLeft( result ) ) {
       return left( result.left )

@@ -5,7 +5,6 @@ import {
 import {
   loginRequestSchema
 }                                    from "~~/core/modules/auth/domain/login_request"
-import { signJwt }                   from "~~/server/utils/sign_jwt"
 import { serverSupabaseServiceRole } from "#supabase/server"
 import {
   SupabaseAdminUserData

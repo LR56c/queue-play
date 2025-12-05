@@ -34,9 +34,8 @@ export class PlaylistService {
   {
   }
 
-  async add( dto: PlaylistResponse,
-    branchId: string ): Promise<Either<BaseException[], boolean>> {
-    const result = await this.addPlaylist.execute( dto,branchId )
+  async add( dto: PlaylistResponse): Promise<Either<BaseException[], boolean>> {
+    const result = await this.addPlaylist.execute( dto)
     if ( isLeft( result ) ) {
       return left( result.left )
     }
@@ -57,8 +56,8 @@ export class PlaylistService {
     } )
   }
 
-  async remove(dto: PlaylistResponse): Promise<Either<BaseException[], boolean>> {
-    return await this.removePlaylist.execute( dto)
+  async remove(id: string): Promise<Either<BaseException[], boolean>> {
+    return await this.removePlaylist.execute( id)
   }
 
   async update( dto: PlaylistResponse ): Promise<Either<BaseException[], boolean>> {

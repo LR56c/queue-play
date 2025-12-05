@@ -26,7 +26,6 @@ export default defineEventHandler( async ( event ) => {
       statusMessage: "Bad Request"
     } )
   }
-  // setHeader( event, "ut", await signJwt( result.right ) )
   return {
     statusMessage: "OK",
     statusCode   : 200

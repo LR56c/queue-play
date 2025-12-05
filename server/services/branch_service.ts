@@ -56,7 +56,7 @@ export class BranchService {
     return await this.removeBranch.execute( id )
   }
 
-  async update( dto: BranchResponse ): Promise<Either<BaseException[], BranchResponse>> {
+  async update( dto: BranchResponse ): Promise<Either<BaseException[], boolean>> {
     const result = await this.updateBranch.execute( dto )
     if ( isLeft( result ) ) {
       return left( result.left )

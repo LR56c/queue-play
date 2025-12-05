@@ -11,7 +11,6 @@ export default defineEventHandler( async ( event ) => {
   const body = await readBody( event )
 
   const dto = await parseData( branchResponse, body )
-
   if ( isLeft( dto ) ) {
     throw createError( {
       statusCode   : 400,
@@ -19,14 +18,13 @@ export default defineEventHandler( async ( event ) => {
     } )
   }
 
-  const result = await branchService.add( dto.right, 'user' )
+  const result = await branchService.add( dto.right)
   if ( isLeft( result ) ) {
     throw createError( {
       statusCode   : 400,
       statusMessage: "Bad Request"
     } )
   }
-  // setHeader( event, "ut", await signJwt( result.right ) )
   return {
     statusMessage: "OK",
     statusCode   : 200
