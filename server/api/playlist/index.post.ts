@@ -11,7 +11,6 @@ export default defineEventHandler( async ( event ) => {
   const body = await readBody( event )
 
   const dto = await parseData( playlistResponse, body )
-
   if ( isLeft( dto ) ) {
     throw createError( {
       statusCode   : 400,
