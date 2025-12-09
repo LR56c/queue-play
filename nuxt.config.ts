@@ -1,5 +1,5 @@
+import { resolve } from 'path'
 import tailwindcss from "@tailwindcss/vite"
-import Aura        from "@primeuix/themes/aura"
 
 export default defineNuxtConfig( {
   compatibilityDate: "2025-07-15",
@@ -28,9 +28,21 @@ export default defineNuxtConfig( {
     plugins: [
       tailwindcss()
     ],
+    resolve: {
+      alias: {
+        '~~': resolve(__dirname, '.'),
+        '~': resolve(__dirname, '.')
+      }
+    }
   },
   nuxtQuery        : {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]
+  },
+  nitro:{
+    alias:{
+      '~~': resolve(__dirname, '.'),
+      '~': resolve(__dirname, '.')
+    }
   },
   supabase:
     {
