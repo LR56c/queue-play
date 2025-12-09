@@ -23,26 +23,14 @@ export default defineNuxtConfig( {
       spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI
     }
   },
-  css              : ["~/app/assets/css/main.css"],
+  css              : ["~/assets/css/main.css"],
   vite             : {
     plugins: [
       tailwindcss()
     ],
-    resolve: {
-      alias: {
-        '~~': resolve(__dirname, '.'),
-        '~': resolve(__dirname, '.')
-      }
-    }
   },
   nuxtQuery        : {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]
-  },
-  nitro:{
-    alias:{
-      '~~': resolve(__dirname, '.'),
-      '~': resolve(__dirname, '.')
-    }
   },
   supabase:
     {
