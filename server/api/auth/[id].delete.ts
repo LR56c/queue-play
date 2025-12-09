@@ -1,7 +1,4 @@
 import { isLeft }                    from "fp-ts/Either"
-import {
-  parseData
-}                                    from "~~/core/modules/shared/application/parse_handlers"
 import { z }                         from "zod"
 import {
   RemoveAuth
@@ -11,6 +8,9 @@ import {
   SupabaseAdminUserData
 }                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
 import type { SupabaseClient }       from "@supabase/supabase-js"
+import {
+  parseData
+}                                    from "~~/core/modules/shared/application/parse_handlers"
 
 export default defineEventHandler( async ( event ) => {
   const idParam = getRouterParam(event, 'id')
