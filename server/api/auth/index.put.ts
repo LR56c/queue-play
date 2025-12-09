@@ -13,10 +13,10 @@ import { serverSupabaseServiceRole } from "#supabase/server"
 import {
   SupabaseAdminUserData
 }                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
+import type { SupabaseClient }       from "@supabase/supabase-js"
 import {
   UpdateAuth
 }                                    from "~~/core/modules/auth/application/update_auth"
-import type { SupabaseClient }       from "@supabase/supabase-js"
 
 export default defineEventHandler( async ( event ) => {
   const headers = getRequestHeaders( event )
