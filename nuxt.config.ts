@@ -23,7 +23,7 @@ export default defineNuxtConfig( {
       spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI
     }
   },
-  css              : ["~/assets/css/main.css"],
+  css              : ["~/app/assets/css/main.css"],
   vite             : {
     plugins: [
       tailwindcss()
