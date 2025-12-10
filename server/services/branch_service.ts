@@ -1,24 +1,24 @@
 import { isLeft, left, right, type Either } from "fp-ts/Either"
 import type {
   PaginatedResult
-} from "@/core/modules/shared/domain/paginated_result"
+} from "@@/core/modules/shared/domain/paginated_result"
 import {
   BaseException
-}                                           from "@/core/modules/shared/domain/exceptions/base_exception"
+}                                           from "@@/core/modules/shared/domain/exceptions/base_exception"
 import {
   AddBranch
-}                                           from "@/core/modules/branch/application/add_branch"
+}                                           from "@@/core/modules/branch/application/add_branch"
 import {
   SearchBranch
-}                                           from "@/core/modules/branch/application/search_branch"
-import { RemoveBranch } from "@/core/modules/branch/application/remove_branch"
-import { UpdateBranch } from "@/core/modules/branch/application/update_branch"
+}                                           from "@@/core/modules/branch/application/search_branch"
+import { RemoveBranch } from "@@/core/modules/branch/application/remove_branch"
+import { UpdateBranch } from "@@/core/modules/branch/application/update_branch"
 import {
   BranchResponse
-}                                           from "@/core/modules/branch/application/branch_response"
+}                                           from "@@/core/modules/branch/application/branch_response"
 import {
   BranchMapper
-}                                           from "@/core/modules/branch/application/branch_mapper"
+}                                           from "@@/core/modules/branch/application/branch_mapper"
 
 export class BranchService {
   constructor(

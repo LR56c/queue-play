@@ -2,10 +2,10 @@ import { isLeft }                     from "fp-ts/Either"
 import {
   matchRole,
   type RoleLevel
-} from "@/core/modules/shared/utils/role_level"
+} from "@@/core/modules/shared/utils/role_level"
 import {
   JWTRepository
-}                                     from "@/core/modules/auth/domain/jwt_repository"
+}                                     from "@@/core/modules/auth/domain/jwt_repository"
 
 type RoleResponse = {
                       message: string

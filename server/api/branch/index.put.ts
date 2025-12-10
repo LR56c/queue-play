@@ -1,11 +1,11 @@
 import { isLeft }        from "fp-ts/Either"
 import {
   parseData
-}                        from "@/core/modules/shared/application/parse_handlers"
+}                        from "@@/core/modules/shared/application/parse_handlers"
 import {
   branchResponse
-}                        from "@/core/modules/branch/application/branch_response"
-import { branchService } from "@/server/dependencies/dependencies"
+}                        from "@@/core/modules/branch/application/branch_response"
+import { branchService } from "@@/server/dependencies/dependencies"
 
 export default defineEventHandler( async ( event ) => {
   const body = await readBody( event )
