@@ -1,7 +1,7 @@
 import { isLeft }      from "fp-ts/Either"
 import { z }           from "zod"
-import { parseData }   from "@@/core/modules/shared/application/parse_handlers"
-import { songService } from "@@/server/dependencies/dependencies"
+import { parseData }   from "@/core/modules/shared/application/parse_handlers"
+import { songService } from "@/server/dependencies/dependencies"
 
 export default defineEventHandler( async ( event ) => {
   const idParam = getRouterParam(event, 'id')

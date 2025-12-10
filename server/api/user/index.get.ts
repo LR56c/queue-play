@@ -1,7 +1,7 @@
 import { isLeft }      from "fp-ts/Either"
-import { parseData }   from "@@/core/modules/shared/application/parse_handlers"
-import { querySchema } from "@@/core/modules/shared/application/query_dto"
-import { userService } from "@@/server/dependencies/dependencies"
+import { parseData }   from "@/core/modules/shared/application/parse_handlers"
+import { querySchema } from "@/core/modules/shared/application/query_dto"
+import { userService } from "@/server/dependencies/dependencies"
 
 export default defineEventHandler( async ( event ) => {
   const queryParams = getQuery( event )

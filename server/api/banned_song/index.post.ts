@@ -1,11 +1,11 @@
 import { isLeft }            from "fp-ts/Either"
 import {
   parseData
-}                            from "@@/core/modules/shared/application/parse_handlers"
-import { bannedSongService } from "@@/server/dependencies/dependencies"
+}                            from "@/core/modules/shared/application/parse_handlers"
+import { bannedSongService } from "@/server/dependencies/dependencies"
 import {
   bannedSongResponse
-}                            from "@@/core/modules/banned_song/application/banned_song_response"
+}                            from "@/core/modules/banned_song/application/banned_song_response"
 
 export default defineEventHandler( async ( event ) => {
   const body = await readBody( event )

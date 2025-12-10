@@ -1,28 +1,28 @@
 import { isLeft, left, right, type Either } from "fp-ts/Either"
 import {
   BaseException
-}                                           from "@@/core/modules/shared/domain/exceptions/base_exception"
+}                                           from "@/core/modules/shared/domain/exceptions/base_exception"
 import type {
   PaginatedResult
-}                                           from "@@/core/modules/shared/domain/paginated_result"
+}                                           from "@/core/modules/shared/domain/paginated_result"
 import {
   AddPlaylist
-}                                           from "@@/core/modules/playlist/application/add_playlist"
+}                                           from "@/core/modules/playlist/application/add_playlist"
 import {
   PlaylistResponse
-}                                           from "@@/core/modules/playlist/application/playlist_response"
+}                                           from "@/core/modules/playlist/application/playlist_response"
 import {
   SearchPlaylist
-}                                           from "@@/core/modules/playlist/application/search_playlist"
+}                                           from "@/core/modules/playlist/application/search_playlist"
 import {
   RemovePlaylist
-}                                           from "@@/core/modules/playlist/application/remove_playlist"
+}                                           from "@/core/modules/playlist/application/remove_playlist"
 import {
   UpdatePlaylist
-}                                           from "@@/core/modules/playlist/application/update_playlist"
+}                                           from "@/core/modules/playlist/application/update_playlist"
 import {
   PlaylistMapper
-}                                           from "@@/core/modules/playlist/application/playlist_mapper"
+}                                           from "@/core/modules/playlist/application/playlist_mapper"
 
 export class PlaylistService {
   constructor(
