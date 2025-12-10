@@ -27,6 +27,20 @@ export default defineNuxtConfig( {
       external: ['@prisma/client', '.prisma', '.prisma/client']
     }
   },
+  alias: {
+    '~': fileURLToPath(new URL('./', import.meta.url)),
+    '@': fileURLToPath(new URL('./', import.meta.url)),
+    '~~': fileURLToPath(new URL('./', import.meta.url)),
+    '@@': fileURLToPath(new URL('./', import.meta.url)),
+  },
+  nitro: {
+    alias: {
+      '~': fileURLToPath(new URL('./', import.meta.url)),
+      '@': fileURLToPath(new URL('./', import.meta.url)),
+      '~~': fileURLToPath(new URL('./', import.meta.url)),
+      '@@': fileURLToPath(new URL('./', import.meta.url)),
+    }
+  },
   runtimeConfig    : {
     youtube: {
       key: process.env.YOUTUBE_API_KEY
