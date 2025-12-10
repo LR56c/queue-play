@@ -1,10 +1,10 @@
-import { isLeft }                    from "fp-ts/Either"
+import { isLeft } from "fp-ts/Either"
 import {
   parseData
-}                                    from "~~/core/modules/shared/application/parse_handlers"
+}                 from "../../../core/modules/shared/application/parse_handlers"
 import {
   userUpdateSchema
-}                                    from "~~/core/modules/user/application/user_update_dto"
+}                 from "~~/core/modules/user/application/user_update_dto"
 import { jwtData }                   from "~~/server/dependencies/dependencies"
 import {
   RoleLevel
