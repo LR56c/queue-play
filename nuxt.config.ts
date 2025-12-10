@@ -1,5 +1,5 @@
-import { resolve } from "path"
 import tailwindcss from "@tailwindcss/vite"
+import { fileURLToPath } from 'url'
 
 export default defineNuxtConfig( {
   compatibilityDate: "2025-07-15",
@@ -14,6 +14,19 @@ export default defineNuxtConfig( {
     "@peterbud/nuxt-query",
     "@vueuse/nuxt"
   ],
+  alias: {
+    '~~': fileURLToPath(new URL('./', import.meta.url)),
+    '~': fileURLToPath(new URL('./', import.meta.url))
+  },
+  nitro: {
+    externals: {
+      external: ['@prisma/client', '.prisma', '.prisma/client'],
+      inline: []
+    },
+    rollupConfig: {
+      external: ['@prisma/client', '.prisma', '.prisma/client']
+    }
+  },
   runtimeConfig    : {
     youtube: {
       key: process.env.YOUTUBE_API_KEY
