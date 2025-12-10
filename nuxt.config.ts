@@ -28,23 +28,10 @@ export default defineNuxtConfig( {
   },
   css              :
     ["~/assets/css/main.css"],
-  alias: {
-    "@": resolve(__dirname)
-  },
   vite: {
     plugins: [
       tailwindcss()
     ],
-    resolve: {
-      alias: {
-        "@": resolve(__dirname)
-      }
-    }
-  },
-  nitro: {
-    alias: {
-      "@": resolve(__dirname)
-    }
   },
   nuxtQuery: {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]

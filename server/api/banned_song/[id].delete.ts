@@ -1,9 +1,9 @@
 import { isLeft }            from "fp-ts/Either"
 import { z }                 from "zod"
+import { bannedSongService } from "~~/server/dependencies/dependencies"
 import {
   parseData
-}                            from "@/core/modules/shared/application/parse_handlers"
-import { bannedSongService } from "@/server/dependencies/dependencies"
+}                            from "~~/core/modules/shared/application/parse_handlers"
 
 export default defineEventHandler( async ( event ) => {
   const idParam = getRouterParam(event, 'id')

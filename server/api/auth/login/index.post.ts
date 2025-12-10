@@ -1,17 +1,17 @@
 import { isLeft }                    from "fp-ts/Either"
 import {
   parseData
-}                                    from "@/core/modules/shared/application/parse_handlers"
+}                                    from "~~/core/modules/shared/application/parse_handlers"
 import {
   loginRequestSchema
-}                                    from "@/core/modules/auth/domain/login_request"
+}                                    from "~~/core/modules/auth/domain/login_request"
 import { serverSupabaseServiceRole } from "#supabase/server"
 import {
   SupabaseAdminUserData
-}                                    from "@/core/modules/auth/infrastructure/supabase_admin_user_data"
+}                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
 import {
   LoginAuth
-}                                    from "@/core/modules/auth/application/login_auth"
+}                                    from "~~/core/modules/auth/application/login_auth"
 import { SupabaseClient }            from "@supabase/supabase-js"
 
 export default defineEventHandler( async ( event ) => {
