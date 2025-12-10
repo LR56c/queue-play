@@ -1,8 +1,17 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
   "files": [],
+  "baseUrl": ".",
   "paths": {
-    "@/*": ["./src/*"],
+    "@/*": [
+      "./src/*"
+    ],
+    "~/*": [
+      "./*"
+    ],
+    "~~/*": [
+      "./*"
+    ]
   },
   "references": [
     {

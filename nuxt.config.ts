@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from "path"
 import tailwindcss from "@tailwindcss/vite"
 
 export default defineNuxtConfig( {
@@ -15,27 +15,35 @@ export default defineNuxtConfig( {
     "@vueuse/nuxt"
   ],
   runtimeConfig    : {
-    jwt: {
-      key  : process.env.JWT_KEY,
+    youtube: {
+      key: process.env.YOUTUBE_API_KEY
     },
-    public: {
-      spotifyClientId: process.env.SPOTIFY_CLIENT,
+    jwt    : {
+      key: process.env.JWT_KEY
+    },
+    public : {
+      spotifyClientId   : process.env.SPOTIFY_CLIENT,
       spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI
     }
   },
-  css              : ["~/assets/css/main.css"],
-  vite             : {
-    plugins: [
-      tailwindcss()
-    ],
-  },
-  nuxtQuery        : {
+  css              :
+    ["~/assets/css/main.css"],
+  vite             :
+    {
+      plugins: [
+        tailwindcss()
+      ]
+    }
+  ,
+  nuxtQuery: {
     autoImports: ["useQuery", "useInfiniteQuery", "useMutation"]
-  },
+  }
+  ,
   supabase:
     {
       redirect: false
-    },
+    }
+  ,
   build: {
     transpile: ["fp-ts"]
   }
