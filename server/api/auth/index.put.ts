@@ -1,22 +1,22 @@
 import { isLeft }                    from "fp-ts/Either"
 import {
   parseData
-}                                    from "~~/core/modules/shared/application/parse_handlers"
+}                                    from "@/core/modules/shared/application/parse_handlers"
 import {
   userUpdateSchema
-}                                    from "~~/core/modules/user/application/user_update_dto"
-import { jwtData }                   from "~~/server/dependencies/dependencies"
+}                                    from "@/core/modules/user/application/user_update_dto"
+import { jwtData }                   from "@/server/dependencies/dependencies"
 import {
   RoleLevel
-}                                    from "~~/core/modules/shared/utils/role_level"
+}                                    from "@/core/modules/shared/utils/role_level"
 import { serverSupabaseServiceRole } from "#supabase/server"
 import {
   SupabaseAdminUserData
-}                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
+}                                    from "@/core/modules/auth/infrastructure/supabase_admin_user_data"
 import type { SupabaseClient }       from "@supabase/supabase-js"
 import {
   UpdateAuth
-}                                    from "~~/core/modules/auth/application/update_auth"
+}                                    from "@/core/modules/auth/application/update_auth"
 
 export default defineEventHandler( async ( event ) => {
   const headers = getRequestHeaders( event )

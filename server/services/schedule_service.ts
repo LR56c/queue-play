@@ -1,28 +1,28 @@
 import { isLeft, left, right, type Either } from "fp-ts/Either"
 import {
   BaseException
-}                                           from "~~/core/modules/shared/domain/exceptions/base_exception"
+}                                           from "@/core/modules/shared/domain/exceptions/base_exception"
 import type {
   PaginatedResult
-}                                           from "~~/core/modules/shared/domain/paginated_result"
+}                                           from "@/core/modules/shared/domain/paginated_result"
 import {
   SchedulePlaylistMapper
-}                                           from "~~/core/modules/schedule_playlist/application/schedule_playlist_mapper"
+}                                           from "@/core/modules/schedule_playlist/application/schedule_playlist_mapper"
 import {
   SchedulePlaylistResponse
-}                                           from "~~/core/modules/schedule_playlist/application/schedule_playlist_response"
+}                                           from "@/core/modules/schedule_playlist/application/schedule_playlist_response"
 import {
   AddSchedulePlaylist
-}                                           from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
+}                                           from "@/core/modules/schedule_playlist/application/add_schedule_playlist"
 import {
   RemoveSchedulePlaylist
-}                                           from "~~/core/modules/schedule_playlist/application/remove_schedule_playlist"
+}                                           from "@/core/modules/schedule_playlist/application/remove_schedule_playlist"
 import {
   UpdateSchedulePlaylist
-}                                           from "~~/core/modules/schedule_playlist/application/update_schedule_playlist"
+}                                           from "@/core/modules/schedule_playlist/application/update_schedule_playlist"
 import {
   SearchSchedulePlaylist
-}                                           from "~~/core/modules/schedule_playlist/application/search_schedule_playlist"
+}                                           from "@/core/modules/schedule_playlist/application/search_schedule_playlist"
 
 export class ScheduleService {
   constructor(

@@ -1,28 +1,28 @@
 import { isLeft, left, right, type Either } from "fp-ts/Either"
 import type {
   PaginatedResult
-} from "~~/core/modules/shared/domain/paginated_result"
+} from "@/core/modules/shared/domain/paginated_result"
 import {
   AddBannedSong
-}                                           from "~~/core/modules/banned_song/application/add_banned_song"
+}                                           from "@/core/modules/banned_song/application/add_banned_song"
 import {
   SearchBannedSong
-}                                           from "~~/core/modules/banned_song/application/search_banned_song"
+}                                           from "@/core/modules/banned_song/application/search_banned_song"
 import {
   UpdateBannedSong
-} from "~~/core/modules/banned_song/application/update_banned_song"
+} from "@/core/modules/banned_song/application/update_banned_song"
 import {
   BannedSongResponse
-}                                           from "~~/core/modules/banned_song/application/banned_song_response"
+}                                           from "@/core/modules/banned_song/application/banned_song_response"
 import {
   BaseException
-}                                           from "~~/core/modules/shared/domain/exceptions/base_exception"
+}                                           from "@/core/modules/shared/domain/exceptions/base_exception"
 import {
   BannedSongMapper
-}                                           from "~~/core/modules/banned_song/application/banned_song_mapper"
+}                                           from "@/core/modules/banned_song/application/banned_song_mapper"
 import  {
   RemoveBannedSong
-} from "~~/core/modules/banned_song/application/remove_banned_song"
+} from "@/core/modules/banned_song/application/remove_banned_song"
 
 export class BannedSongService {
   constructor(

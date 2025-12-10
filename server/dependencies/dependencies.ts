@@ -1,112 +1,112 @@
 import {
   PrismaBranchData
-}                                    from "~~/core/modules/branch/infrastructure/prisma_branch_data"
-import prisma                        from "~~/lib/prisma"
+}                                    from "@/core/modules/branch/infrastructure/prisma_branch_data"
+import prisma                        from "@/lib/prisma"
 import {
   AddBranch
-}                                    from "~~/core/modules/branch/application/add_branch"
+}                                    from "@/core/modules/branch/application/add_branch"
 import {
   RemoveBranch
-}                                    from "~~/core/modules/branch/application/remove_branch"
+}                                    from "@/core/modules/branch/application/remove_branch"
 import {
   UpdateBranch
-}                                    from "~~/core/modules/branch/application/update_branch"
+}                                    from "@/core/modules/branch/application/update_branch"
 import {
   SearchBranch
-}                                    from "~~/core/modules/branch/application/search_branch"
+}                                    from "@/core/modules/branch/application/search_branch"
 import {
   PrismaBannedSongData
-}                                    from "~~/core/modules/banned_song/infrastructure/prisma_banned_song_data"
+}                                    from "@/core/modules/banned_song/infrastructure/prisma_banned_song_data"
 import {
   AddBannedSong
-}                                    from "~~/core/modules/banned_song/application/add_banned_song"
+}                                    from "@/core/modules/banned_song/application/add_banned_song"
 import {
   RemoveBannedSong
-}                                    from "~~/core/modules/banned_song/application/remove_banned_song"
+}                                    from "@/core/modules/banned_song/application/remove_banned_song"
 import {
   UpdateBannedSong
-}                                    from "~~/core/modules/banned_song/application/update_banned_song"
+}                                    from "@/core/modules/banned_song/application/update_banned_song"
 import {
   SearchBannedSong
-}                                    from "~~/core/modules/banned_song/application/search_banned_song"
+}                                    from "@/core/modules/banned_song/application/search_banned_song"
 import {
   PrismaOnGoingSongData
-}                                    from "~~/core/modules/on_going_song/infrastructure/prisma_on_going_song_data"
+}                                    from "@/core/modules/on_going_song/infrastructure/prisma_on_going_song_data"
 import {
   AddSong
-}                                    from "~~/core/modules/on_going_song/application/add_song"
+}                                    from "@/core/modules/on_going_song/application/add_song"
 import {
   RemoveSongsBullk
-}                                    from "~~/core/modules/on_going_song/application/remove_songs_bullk"
+}                                    from "@/core/modules/on_going_song/application/remove_songs_bullk"
 import {
   UpdateSongsBulk
-}                                    from "~~/core/modules/on_going_song/application/update_songs_bulk"
+}                                    from "@/core/modules/on_going_song/application/update_songs_bulk"
 import {
   SearchSongs
-}                                    from "~~/core/modules/on_going_song/application/search_songs"
+}                                    from "@/core/modules/on_going_song/application/search_songs"
 import {
   PrismaPlaylistData
-}                                    from "~~/core/modules/playlist/infrastructure/prisma_playlist_data"
+}                                    from "@/core/modules/playlist/infrastructure/prisma_playlist_data"
 import {
   AddPlaylist
-}                                    from "~~/core/modules/playlist/application/add_playlist"
+}                                    from "@/core/modules/playlist/application/add_playlist"
 import {
   RemovePlaylist
-}                                    from "~~/core/modules/playlist/application/remove_playlist"
+}                                    from "@/core/modules/playlist/application/remove_playlist"
 import {
   UpdatePlaylist
-}                                    from "~~/core/modules/playlist/application/update_playlist"
+}                                    from "@/core/modules/playlist/application/update_playlist"
 import {
   SearchPlaylist
-}                                    from "~~/core/modules/playlist/application/search_playlist"
+}                                    from "@/core/modules/playlist/application/search_playlist"
 import {
   PrismaSchedulePlaylistData
-}                                    from "~~/core/modules/schedule_playlist/infrastructure/prisma_schedule_playlist_data"
+}                                    from "@/core/modules/schedule_playlist/infrastructure/prisma_schedule_playlist_data"
 import {
   RemoveSchedulePlaylist
-}                                    from "~~/core/modules/schedule_playlist/application/remove_schedule_playlist"
+}                                    from "@/core/modules/schedule_playlist/application/remove_schedule_playlist"
 import {
   UpdateSchedulePlaylist
-}                                    from "~~/core/modules/schedule_playlist/application/update_schedule_playlist"
+}                                    from "@/core/modules/schedule_playlist/application/update_schedule_playlist"
 import {
   SearchSchedulePlaylist
-}                                    from "~~/core/modules/schedule_playlist/application/search_schedule_playlist"
+}                                    from "@/core/modules/schedule_playlist/application/search_schedule_playlist"
 import {
   PrismaUserData
-}                                    from "~~/core/modules/user/infrastructure/prisma_user_data"
+}                                    from "@/core/modules/user/infrastructure/prisma_user_data"
 import {
   SearchUser
-}                                    from "~~/core/modules/user/application/search_user"
-import { UserService }               from "~~/server/services/user_service"
-import { SongService }               from "~~/server/services/song_service"
+}                                    from "@/core/modules/user/application/search_user"
+import { UserService }               from "@/server/services/user_service"
+import { SongService }               from "@/server/services/song_service"
 import {
   BannedSongService
-}                                    from "~~/server/services/banned_song_service"
-import { PlaylistService }           from "~~/server/services/playlist_service"
+}                                    from "@/server/services/banned_song_service"
+import { PlaylistService }           from "@/server/services/playlist_service"
 import {
   AddSchedulePlaylist
-}                                    from "~~/core/modules/schedule_playlist/application/add_schedule_playlist"
-import { ScheduleService }           from "~~/server/services/schedule_service"
-import { BranchService }             from "~~/server/services/branch_service"
+}                                    from "@/core/modules/schedule_playlist/application/add_schedule_playlist"
+import { ScheduleService }           from "@/server/services/schedule_service"
+import { BranchService }             from "@/server/services/branch_service"
 import {
   SupabaseAdminUserData
-}                                    from "~~/core/modules/auth/infrastructure/supabase_admin_user_data"
+}                                    from "@/core/modules/auth/infrastructure/supabase_admin_user_data"
 import {
   LoginAuth
-}                                    from "~~/core/modules/auth/application/login_auth"
+}                                    from "@/core/modules/auth/application/login_auth"
 import {
   RegisterAuth
-}                                    from "~~/core/modules/auth/application/register_auth"
+}                                    from "@/core/modules/auth/application/register_auth"
 import {
   RemoveAuth
-}                                    from "~~/core/modules/auth/application/remove_auth"
+}                                    from "@/core/modules/auth/application/remove_auth"
 import {
   UpdateAuth
-}                                    from "~~/core/modules/auth/application/update_auth"
-import { AuthService }               from "~~/server/services/auth_service"
+}                                    from "@/core/modules/auth/application/update_auth"
+import { AuthService }               from "@/server/services/auth_service"
 import {
   SupabaseJwtData
-}                                    from "~~/core/modules/auth/infrastructure/supabase_jwt_data"
+}                                    from "@/core/modules/auth/infrastructure/supabase_jwt_data"
 import { serverSupabaseServiceRole } from "#supabase/server"
 
 const branchDao                = new PrismaBranchData( prisma )

@@ -1,29 +1,29 @@
-import { AddUser } from "~~/core/modules/user/application/add_user"
+import { AddUser } from "@/core/modules/user/application/add_user"
 import {
   SearchUser
-} from "~~/core/modules/user/application/search_user"
+} from "@/core/modules/user/application/search_user"
 import {
   RemoveUser
-} from "~~/core/modules/user/application/remove_user"
+} from "@/core/modules/user/application/remove_user"
 import {
   UpdateUser
-} from "~~/core/modules/user/application/update_user"
+} from "@/core/modules/user/application/update_user"
 import { isLeft, left, right, type Either } from "fp-ts/Either"
 import {
   BaseException
-} from "~~/core/modules/shared/domain/exceptions/base_exception"
+} from "@/core/modules/shared/domain/exceptions/base_exception"
 import type {
   UserUpdateDTO
-} from "~~/core/modules/user/application/user_update_dto"
+} from "@/core/modules/user/application/user_update_dto"
 import {
   UserMapper
-} from "~~/core/modules/user/application/user_mapper"
+} from "@/core/modules/user/application/user_mapper"
 import {
   UserResponse
-} from "~~/core/modules/user/application/user_response"
+} from "@/core/modules/user/application/user_response"
 import type {
   PaginatedResult
-} from "~~/core/modules/shared/domain/paginated_result"
+} from "@/core/modules/shared/domain/paginated_result"
 
 export class UserService {
   constructor(

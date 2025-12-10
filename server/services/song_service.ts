@@ -1,28 +1,28 @@
 import { isLeft, left, right, type Either } from "fp-ts/Either"
 import {
   BaseException
-}                                           from "~~/core/modules/shared/domain/exceptions/base_exception"
+}                                           from "@/core/modules/shared/domain/exceptions/base_exception"
 import type {
   PaginatedResult
-}                                           from "~~/core/modules/shared/domain/paginated_result"
+}                                           from "@/core/modules/shared/domain/paginated_result"
 import {
   AddSong
-}                                           from "~~/core/modules/on_going_song/application/add_song"
+}                                           from "@/core/modules/on_going_song/application/add_song"
 import {
   RemoveSongsBullk
-}                                           from "~~/core/modules/on_going_song/application/remove_songs_bullk"
+}                                           from "@/core/modules/on_going_song/application/remove_songs_bullk"
 import {
   UpdateSongsBulk
-}                                           from "~~/core/modules/on_going_song/application/update_songs_bulk"
+}                                           from "@/core/modules/on_going_song/application/update_songs_bulk"
 import {
   SearchSongs
-}                                           from "~~/core/modules/on_going_song/application/search_songs"
+}                                           from "@/core/modules/on_going_song/application/search_songs"
 import {
   OnGoingSongResponse
-}                                           from "~~/core/modules/on_going_song/application/on_going_song_response"
+}                                           from "@/core/modules/on_going_song/application/on_going_song_response"
 import {
   OnGoingSongMapper
-}                                           from "~~/core/modules/on_going_song/application/on_going_song_mapper"
+}                                           from "@/core/modules/on_going_song/application/on_going_song_mapper"
 
 export class SongService {
   constructor(
