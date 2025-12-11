@@ -1,18 +1,14 @@
 <template>
   <div>
-    <h1>Mi Jukebox con Spotify</h1>
+    <h1>Mi Jukebox con Spotify.</h1>
     <div v-if="accessToken">
       <input type="text" v-model="searchQuery" placeholder="Busca tu canción..." class="search-input"/>
       <div v-for="track in searchResults" :key="track.id" class="track-item" @click="selectTrack(track)">
-        <img :src="track.album.images[2]?.url"/>
-        <div>
-          <strong>{{ track.name }}</strong>
-          <p>{{ track.artists.map( a => a.name ).join( ", " ) }}</p>
-        </div>
+        <pre>{{ JSON.stringify( track ) }}</pre>
       </div>
     </div>
     <button v-else @click="loginWithSpotify">
-      🚀 Iniciar Sesión con Spotify
+      Iniciar Sesión con Spotify
     </button>
   </div>
 </template>
@@ -48,7 +44,6 @@ const searchQuery   = ref( "" )
 const searchResults = ref<any[]>( [] )
 
 watch(searchQuery, async ( newQuery ) => {
-  console.log( 'New search query:', newQuery )
   if ( newQuery.length < 3 || !accessToken.value ) {
     searchResults.value = []
     return
@@ -60,7 +55,6 @@ watch(searchQuery, async ( newQuery ) => {
         }
       } )
 
-  console.log( 'response',response )
   if ( !response.ok ) {
     console.error( "El token de Spotify pudo haber expirado." )
     accessToken.value = null
@@ -68,7 +62,6 @@ watch(searchQuery, async ( newQuery ) => {
   }
 
   const data          = await response.json()
-  console.log( 'data',data )
   searchResults.value = data.tracks.items
 })
 
