@@ -43,7 +43,7 @@ const loginWithSpotify = async () => {
 const searchQuery   = ref( "" )
 const searchResults = ref<any[]>( [] )
 
-watch(searchQuery, async ( newQuery ) => {
+watch( searchQuery, async ( newQuery ) => {
   if ( newQuery.length < 3 || !accessToken.value ) {
     searchResults.value = []
     return
@@ -63,7 +63,7 @@ watch(searchQuery, async ( newQuery ) => {
 
   const data          = await response.json()
   searchResults.value = data.tracks.items
-})
+} )
 
 const selectTrack = ( track: any ) => {
   const trackInfo = `${ track.name } - ${ track.artists.map( ( a: any ) => a.name ).join( ", " ) }`
