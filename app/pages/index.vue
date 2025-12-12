@@ -4,7 +4,12 @@
     <div v-if="accessToken">
       <input type="text" v-model="searchQuery" placeholder="Busca tu canción..." class="search-input"/>
       <div v-for="track in searchResults" :key="track.id" class="track-item" @click="selectTrack(track)">
-        <pre>{{ JSON.stringify( track ) }}</pre>
+        <img :src="track.album.images[2]?.url"  alt="Album Art"/>
+        <div>
+          <strong>{{ track.name }}</strong>
+          <strong>{{ track.album.name }}</strong>
+          <p>{{ track.artists.map(a => a.name).join(', ') }}</p>
+        </div>
       </div>
     </div>
     <button v-else @click="loginWithSpotify">
